@@ -39,4 +39,27 @@ class LinkedList:
         return False
 
     def reverse_list(self, node, prev):
-        pass
+        # pass
+        # # check if the ll is empty
+        if self.head is None:
+            return None
+        # check if there is only one node / if recursion reached the tail
+        if node.get_next() is None:
+            self.head = node
+        # otherwise more than one node
+        if node.get_next():
+            # while there is a next child, repeat the process with recursion on the next child
+            self.reverse_list(node.get_next(), node)
+        # node's next is its previous 
+        node.set_next(prev)
+            
+        
+
+ll = LinkedList()
+ll.add_to_head(1)
+ll.add_to_head(2)
+ll.add_to_head(3)
+print('original head',ll.head.value)
+ll.reverse_list(ll.head, None)
+print('new head',ll.head.value)
+print(ll.head.get_next().value)
